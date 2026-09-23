@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador y Consultor de Consumidores - UNACEM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-layout">
+        <!-- Sidebar Lateral Unificado -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <img src="{{ url_for('static', filename='logo_unacem.png') }}" alt="UNACEM" class="brand-logo" onerror="this.src='{{ url_for('static', filename='logo_unacem.png') }}';">
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active">
+                    <span class="icon">🔍</span> Buscar Consumidores
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p><b>UNACEM</b></p>
+                <small>DMEGC</small>
+            </div>
+        </aside>
+
+        <!-- Área Principal -->
+        <div class="main-wrapper">
+            <!-- Barra Superior de Perfil -->
+            <header class="topbar">
+                <div class="user-profile">
+                    <div class="avatar">DE</div>
+                    <div class="user-info">
+                        <span class="user-name">DMEGC</span>
+                        <span class="user-role">Usuario Consultor</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content-body">
+                <div class="page-header">
+                    <h2>Buscador y Consultor de Consumidores (Equipos)</h2>
+                    <p class="page-subtitle">Consulta, busca la información de los equipos de forma rápida y segura.</p>
+                </div>
+
+                <!-- Tarjeta de Búsqueda -->
+                <div class="card search-card">
+                    <div class="tab-header">
+                        <span class="tab-btn active">🔴 Consumidores</span>
+                    </div>
+
+                    <form id="formBusqueda" onsubmit="realizarBusqueda(event)">
+                        <div class="search-input-group">
+                            <input type="text" id="inputTexto" placeholder="Di tu búsqueda o escribe un código..." autocomplete="off">
+                            <button type="button" id="btnMic" class="btn-mic" onclick="buscarPorVoz()" title="Búsqueda por voz">
+                                🎤
+                            </button>
+                            <button type="submit" class="btn btn-red">🔍 Buscar</button>
+                            <button type="button" class="btn btn-outline" onclick="limpiarBusqueda()">🔄 Limpiar</button>
+                        </div>
+                    </form>
+                    <div id="estadoVoz" class="estado-voz"></div>
+                </div>
+
+                <!-- Tabla de Resultados -->
+                <div class="card table-card">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>CÓDIGO DE UBICACIÓN</th>
+                                    <th>DESCRIPCIÓN</th>
+                                    <th>S.E</th>
+                                    <th>UBICACIÓN EN PLANTA</th>
+                                    <th>PLANO</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaCuerpo">
+                                <tr>
+                                    <td colspan="5" class="placeholder-row">
+                                        Ingresa un código o presiona el micrófono para realizar una consulta.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
